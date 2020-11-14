@@ -1,4 +1,5 @@
 # Prediction microservice
+![Prediction](https://github.com/RSO23/prediction/workflows/Prediction/badge.svg)
 
 Exposed on `localhost:8083`
 
