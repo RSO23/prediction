@@ -1,11 +1,7 @@
-FROM adoptopenjdk:11.0.9_11-jre-hotspot
-
-RUN mkdir /app
-
-WORKDIR /app
-
-ADD ./prediction/target/prediction-0.0.1-SNAPSHOT.jar /app
-
-EXPOSE 8083
-
-ENTRYPOINT ["java", "-jar", "prediction-0.0.1-SNAPSHOT.jar"]
+FROM openjdk:8-jdk-alpine
+VOLUME /tmp
+ARG DEPENDENCY=target/dependency
+COPY ${DEPENDENCY}/BOOT-INF/lib /app/lib
+COPY ${DEPENDENCY}/META-INF /app/META-INF
+COPY ${DEPENDENCY}/BOOT-INF/classes /app
+ENTRYPOINT ["java","-cp","app:app/lib/*","rso.prediction.PredictionApplication"]

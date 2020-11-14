@@ -1,0 +1,12 @@
+server:
+  port: ${PORT:8083}
+
+isProd: ${IS_PROD:false}
+
+# Show details of health endpoint
+management:
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: true
