@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prediction-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prediction
+  template:
+    metadata:
+      labels:
+        app: prediction
+    spec:
+      containers:
+        - image: rso23.azurecr.io/prediction:latest
+          name: prediction
+          ports:
+            - containerPort: 8083
+              name: server
+              protocol: TCP
+          imagePullPolicy: Always
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: prediction
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8083
+      protocol: TCP
+      targetPort: server
+  selector:
+    app: prediction
