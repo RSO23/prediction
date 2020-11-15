@@ -15,6 +15,21 @@ Response:
 }
 ```
 
+Request: `http://localhost:8083/predictions`
+
+Response (data from database):
+```
+[
+    {
+        predictionId: 1,
+        gameId: "test_game_id",
+        prediction: "Victory",
+        predictionCertainty: 87.3000031,
+        timestamp: "2020-11-15T15:46:30.395+00:00"
+    }
+]
+```
+
 #### Health checks
 Request: `http://localhost:8083/actuator/health`. <br> It is also possible to check only `liveness` and `readines` on endpoint `/actuator/health/livenesss` and `/actuator/health/readiness`.
 
