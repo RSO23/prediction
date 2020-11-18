@@ -23,11 +23,18 @@ Response:
 {
     status: "UP",
     components: {
+        db: {
+            status: "UP",
+            details: {
+                database: "PostgreSQL",
+                validationQuery: "isValid()"
+            }
+        },
         diskSpace: {
             status: "UP",
             details: {
                 total: 499963174912,
-                free: 236836245504,
+                free: 243288940544,
                 threshold: 10485760,
                 exists: true
             }

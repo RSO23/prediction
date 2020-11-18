@@ -10,6 +10,11 @@ management:
       show-details: always
       probes:
         enabled: true
+  health:
+    diskspace:
+      enabled: true
+    db:
+      enabled: true
 spring:
   jpa:
     database: postgresql
