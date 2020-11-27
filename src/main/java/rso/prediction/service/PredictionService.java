@@ -30,8 +30,6 @@ public class PredictionService implements IPredictionService {
 
     @Override
     public List<Prediction> findAll(){
-        var predictions = (List<Prediction>) predictionRepository.findAll();
-
-        return predictions;
+        return (List<Prediction>) predictionRepository.findAll();
     }
 }
