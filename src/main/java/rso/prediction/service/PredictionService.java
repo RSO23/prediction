@@ -1,34 +1,27 @@
 package rso.prediction.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-import rso.prediction.dto.PredictionDto;
+
 import rso.prediction.entity.Prediction;
 import rso.prediction.repository.PredictionRepository;
 
-import java.util.List;
-
 @Service
-public class PredictionService implements IPredictionService {
+public class PredictionService {
 
-    private final RestTemplate restTemplate;
+    private final PredictionRepository predictionRepository;
 
     @Autowired
-    private PredictionRepository predictionRepository;
-
-    public PredictionService(RestTemplate restTemplate){
-        this.restTemplate = restTemplate;
+    public PredictionService(PredictionRepository predictionRepository){
+        this.predictionRepository = predictionRepository;
     }
 
-    public PredictionDto getPredictionForGame(String gameId){
-        PredictionDto prediction = new PredictionDto(gameId);
-        prediction.setPrediction("Victory");
-        prediction.setPredictionCertainty(99.0);
-        return prediction;
+    public Prediction getPredictionForGame(String gameId){
+        return predictionRepository.findByGameId(gameId);
     }
 
-    @Override
     public List<Prediction> findAll(){
         return (List<Prediction>) predictionRepository.findAll();
     }
