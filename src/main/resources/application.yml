@@ -1,14 +1,14 @@
-isProd: ${IS_PROD:false}
+isProd: false
 
 server:
-  port: ${PORT:8083}
+  port: 8083
 
 spring:
   application:
     name: prediction
   cloud:
     consul:
-      host: ${CONSUL_HOST:localhost}
+      host: localhost
       discovery:
         prefer-ip-address: true
   datasource:
