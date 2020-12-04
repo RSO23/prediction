@@ -1,24 +1,16 @@
-server:
-  port: ${PORT:8083}
-
 isProd: ${IS_PROD:false}
 
-# Show details of health endpoint
-management:
-  endpoint:
-    health:
-      show-details: always
-      probes:
-        enabled: true
-  health:
-    diskspace:
-      enabled: true
-    db:
-      enabled: true
+server:
+  port: ${PORT:8083}
 
 spring:
   application:
     name: prediction
+  cloud:
+    consul:
+      host: consul-consul-server
+      discovery:
+        prefer-ip-address: true
   datasource:
 #    url: jdbc:postgresql://hattie.db.elephantsql.com:5432/ztjjveon
 #    username: ztjjveon
@@ -48,3 +40,16 @@ spring:
     jpa:
       repositories:
         bootstrap_mode: default
+
+# Show details of health endpoint
+management:
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: true
+  health:
+    diskspace:
+      enabled: true
+    db:
+      enabled: true
