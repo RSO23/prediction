@@ -9,7 +9,11 @@ spring:
   cloud:
     consul:
       host: localhost
+      config:
+        fail-fast: true
+        format: yaml
       discovery:
+        fail-fast: true
         prefer-ip-address: true
   datasource:
 #    url: jdbc:postgresql://hattie.db.elephantsql.com:5432/ztjjveon
