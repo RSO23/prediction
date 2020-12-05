@@ -17,7 +17,3 @@ spring:
   cloud:
     consul:
       host: consul-consul-server
-      config:
-        fail-fast: true
-      discovery:
-        fail-fast: true
