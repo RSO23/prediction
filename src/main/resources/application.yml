@@ -4,6 +4,8 @@ server:
   port: 8083
 
 spring:
+  application:
+    name: prediction
   datasource:
 #    url: jdbc:postgresql://hattie.db.elephantsql.com:5432/ztjjveon
 #    username: ztjjveon
