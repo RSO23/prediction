@@ -35,6 +35,10 @@ spring:
     jpa:
       repositories:
         bootstrap_mode: default
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
 
 # Show details of health endpoint
 management:
