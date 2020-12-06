@@ -2,6 +2,7 @@ package rso.prediction;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
@@ -33,6 +34,7 @@ public class PredictionApplication {
         ApplicationContext applicationContext = contextRefreshedEvent.getApplicationContext();
         String dbUrl = applicationContext.getEnvironment().getProperty("spring.datasource.url");
         log.info("Connected to postgres: " + dbUrl);
+        MDC.put("applicationName", applicationContext.getId());
     }
 
 //    @Bean
