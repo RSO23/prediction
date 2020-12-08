@@ -56,6 +56,10 @@ management:
       enabled: true
 
 ---
+server:
+  servlet:
+    context-path: /prediction
+
 spring:
   profiles: prod
 
