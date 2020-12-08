@@ -2,8 +2,6 @@ isProd: false
 
 server:
   port: 8083
-  servlet:
-    context-path: /
 
 spring:
   application:
@@ -56,10 +54,6 @@ management:
       enabled: true
 
 ---
-server:
-  servlet:
-    context-path: /prediction
-
 spring:
   profiles: prod
 
