@@ -3,6 +3,10 @@ isProd: false
 server:
   port: 8083
 
+my:
+  swagger:
+    prefix:
+
 spring:
   application:
     name: prediction
@@ -56,5 +60,9 @@ management:
 ---
 spring:
   profiles: prod
+
+my:
+  swagger:
+    prefix: prediction
 
 isProd: true
