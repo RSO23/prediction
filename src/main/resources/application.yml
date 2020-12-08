@@ -63,6 +63,6 @@ spring:
 
 my:
   swagger:
-    prefix: prediction
+    prefix: /prediction
 
 isProd: true

@@ -17,7 +17,7 @@ spec:
         app: prediction
     spec:
       containers:
-        - image: blarc/rso-prediction:latest
+        - image: blarc/rso-prediction:95caf65
           name: prediction
           ports:
             - containerPort: 8083
@@ -28,13 +28,13 @@ spec:
             httpGet:
               path: /actuator/health/liveness
               port: server
-            initialDelaySeconds: 90
+            initialDelaySeconds: 180
             periodSeconds: 3
           readinessProbe:
             httpGet:
               path: /actuator/health/readiness
               port: server
-            initialDelaySeconds: 90
+            initialDelaySeconds: 180
             periodSeconds: 3
 
 ---
