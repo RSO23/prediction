@@ -3,6 +3,9 @@ name: Prediction
 on:
   push:
     branches: [ main ]
+    paths-ignore:
+      - 'k8s/**'
+      - '**.md'
 
 
 jobs:

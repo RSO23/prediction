@@ -9,13 +9,12 @@ import org.slf4j.MDC;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.client.RestTemplate;
 
 import springfox.documentation.builders.PathSelectors;
@@ -31,6 +30,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @ConfigurationPropertiesScan
 @EnableSwagger2
+@EnableDiscoveryClient
 public class PredictionApplication {
 
     private static final Logger log = LoggerFactory.getLogger(PredictionApplication.class);
@@ -50,11 +50,6 @@ public class PredictionApplication {
         String dbUrl = applicationContext.getEnvironment().getProperty("spring.datasource.url");
         log.info("Connected to postgres: " + dbUrl);
         MDC.put("applicationName", applicationContext.getId());
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 
     @Bean
@@ -85,8 +80,5 @@ public class PredictionApplication {
         return new ApiKey("JWT", "Authorization", "header");
     }
 
-//    @Bean
-//    public Hibernate5Module hibernate5Module() {
-//        return new Hibernate5Module();
-//    }
+
 }
