@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
@@ -14,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import rso.prediction.config.ConfigProperties;
 import rso.prediction.dto.MatchDto;
 import rso.prediction.dto.PredictionDto;
+import rso.prediction.dto.SummonerNamesDto;
 import rso.prediction.service.PredictionService;
 
 @RestController
@@ -41,8 +43,13 @@ public class PredictionController {
     }
 
     @PostMapping("/predict")
-    public PredictionDto makePrediction(@RequestBody MatchDto matchDto) {
-        return predictionService.makePrediction(matchDto);
+    public PredictionDto makePrediction(@RequestBody MatchDto matchDto, @RequestParam Long userId) {
+        return predictionService.makePrediction(matchDto, userId);
+    }
+
+    @PostMapping("/predict/summoners")
+    public PredictionDto makePredictionSummoners(@RequestBody SummonerNamesDto summonerNamesDto) {
+        return predictionService.makePredictionsSummoners(summonerNamesDto);
     }
 
 }
