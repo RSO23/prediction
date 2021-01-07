@@ -2,9 +2,10 @@ package rso.prediction.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
+import org.springframework.boot.availability.AvailabilityChangeEvent;
+import org.springframework.boot.availability.LivenessState;
+import org.springframework.context.ApplicationContext;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
-import rso.prediction.component.CustomHealthCheck;
 import rso.prediction.config.ConfigProperties;
 import rso.prediction.dto.MatchDto;
 import rso.prediction.dto.PredictionDto;
@@ -33,7 +33,7 @@ public class PredictionController {
 
     private final PredictionService predictionService;
 
-    private final CustomHealthCheck customHealthCheck;
+    private final ApplicationContext applicationContext;
 
     @GetMapping("/ping")
     public String ping(){
@@ -57,9 +57,8 @@ public class PredictionController {
     }
 
     @PostMapping("/break")
-    public ResponseEntity<Void> breakPod() {
-        customHealthCheck.setState("DOWN");
-        return new ResponseEntity<>(HttpStatus.OK);
+    public void breakPod() {
+        AvailabilityChangeEvent.publish(applicationContext, LivenessState.BROKEN);
     }
 
 
